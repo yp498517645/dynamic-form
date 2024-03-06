@@ -1,13 +1,9 @@
 <template>
-  <div></div>
+  <dyInputVue></dyInputVue>
 </template>
 
-<script>
-export default {
-  setup() {
-    return {}
-  }
-}
+<script setup lang="ts">
+import dyInputVue from './components/dy-input.vue'
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
