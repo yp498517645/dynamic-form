@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import tempJson from './tempJson'
-import FormMap from './exportFormConfig'
+import FormMap from './registerFormComponents'
 type JsonArrType = typeof tempJson
 
 interface Props {
