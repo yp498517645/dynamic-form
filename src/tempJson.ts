@@ -5,13 +5,9 @@ export default [
     field: 'sss', //字段名字
     fieldValue: '9666', //字段值
     label: 'xxzxx', //标签
-    rules: [
-      {
-        required: true,
-        message: 'Please select Activity zone',
-        trigger: 'change'
-      }
-    ], //规则
-    options: {}
+    options: {
+      'label-width': '180px',
+      required: true
+    }
   }
 ]

@@ -4,7 +4,6 @@
       ref="ruleFormRef"
       style="max-width: 600px"
       :model="formModel"
-      label-width="auto"
       class="demo-ruleForm"
       status-icon
     >
@@ -29,7 +28,7 @@ type formItem = {
   type: string
   label?: string
   fieldValue?: string | number
-  options?: { [propertyName: string]: string }
+  options?: { [propertyName: string]: unknown }
   [propertyName: string]: any
 }
 

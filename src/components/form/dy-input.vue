@@ -4,6 +4,7 @@
     :class="config.customClass"
     :prop="config.field"
     :rules="config.rules"
+    v-bind="config.options"
   >
     <el-input v-model="modelValue" :placeholder="config.placeholder" />
   </el-form-item>
@@ -16,6 +17,7 @@ interface typeProps {
     label: string
     field: string
     customClass?: string
+    options?: { [propertyName: string]: unknown }
     rules?: Array<unknown>
   }
 }
