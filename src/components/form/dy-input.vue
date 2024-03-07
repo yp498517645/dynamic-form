@@ -1,25 +1,36 @@
 <template>
-  <el-form-item :label="$props.label" :rules="props.rules" :class="props.customClass">
-    <el-input v-model="modelValue" :placeholder="props.placeholder" />
+  <el-form-item
+    :label="config.label"
+    :class="config.customClass"
+    :prop="config.field"
+    :rules="config.rules"
+  >
+    <el-input v-model="modelValue" :placeholder="config.placeholder" />
   </el-form-item>
 </template>
 
 <script setup lang="ts">
-
-interface Props {
-  placeholder: string
-  label: string
-  field: string
-  customClass?: string
-  rules?: Array<any>
+interface typeProps {
+  config: {
+    placeholder: string
+    label: string
+    field: string
+    customClass?: string
+    rules?: Array<unknown>
+  }
 }
-const props = withDefaults(defineProps<Props>(), { placeholder: '', label: '', field: '' })
-
-const modelValue = computed(() => {
-  return props.field
+const props = withDefaults(defineProps<typeProps>(), {
+  config: () => ({ placeholder: '', label: '', field: '' })
 })
+const { config } = toRefs(props)
 
-const attrs = useAttrs() //
+const model = defineModel()
+const modelValue = computed({
+  get: () => model.value,
+  set: (newValue) => {
+    model.value = newValue
+  }
+})
 </script>
 
 <style scoped></style>

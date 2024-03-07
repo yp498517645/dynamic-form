@@ -1,24 +1,53 @@
 <template>
   <div>
-    <template v-if="props.jsonArr">
-      <component
-        :is="FormMap.get(item.type)"
-        v-for="item in props.jsonArr"
-        :key="item.field"
-      ></component>
-    </template>
+    <el-form
+      ref="ruleFormRef"
+      style="max-width: 600px"
+      :model="formModel"
+      label-width="auto"
+      class="demo-ruleForm"
+      status-icon
+    >
+      <template v-if="modelArr">
+        <component
+          :is="modules.get(item.type)"
+          v-for="item in modelArr"
+          :key="item.field"
+          :config="item"
+          v-model="formModel[item.field]"
+        ></component>
+      </template>
+    </el-form>
   </div>
 </template>
 
 <script setup lang="ts">
-import tempJson from './tempJson'
-import FormMap from './registerFormComponents'
-type JsonArrType = typeof tempJson
+import modules from './registerFormComponents'
+
+type formItem = {
+  field: string
+  type: string
+  label?: string
+  fieldValue?: string | number
+  options?: { [propertyName: string]: string }
+  [propertyName: string]: any
+}
 
 interface Props {
-  jsonArr?: JsonArrType
+  jsonArr: Array<formItem>
 }
-const props = defineProps<Props>()
+const { jsonArr } = defineProps<Props>()
+
+const modelArr = ref([...jsonArr])
+const createInitObj = () => {
+  const obj: { [propertyNameL: string]: unknown } = {}
+  jsonArr.forEach((item) => {
+    obj[item.field] = item.fieldValue
+  })
+  return obj
+}
+const obj = createInitObj()
+const formModel = reactive(obj)
 </script>
 
 <style scoped></style>

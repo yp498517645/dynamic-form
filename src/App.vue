@@ -1,9 +1,10 @@
 <template>
-  <dyInputVue></dyInputVue>
+  <dyIndexVue :jsonArr="JsonArrType"></dyIndexVue>
 </template>
 
 <script setup lang="ts">
-import dyInputVue from './components/dy-input.vue'
+import JsonArrType from './tempJson'
+import dyIndexVue from './components/dy-index.vue'
 </script>
 
 <style scoped></style>
