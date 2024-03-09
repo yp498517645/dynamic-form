@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-form
-      ref="ruleFormRef"
+      ref="formRef"
       style="max-width: 600px"
       :model="formModel"
       class="demo-ruleForm"
@@ -21,8 +21,10 @@
 </template>
 
 <script setup lang="ts">
+import type { ElForm } from 'element-plus'
+import { type Ref } from 'vue'
 import modules from './registerFormComponents'
-
+export type formRefType = Ref<InstanceType<typeof ElForm> | null>
 type formItem = {
   field: string
   type: string
@@ -31,13 +33,15 @@ type formItem = {
   options?: { [propertyName: string]: unknown }
   [propertyName: string]: any
 }
-
 interface Props {
   jsonArr: Array<formItem>
 }
-const { jsonArr } = defineProps<Props>()
+export type ExposeType = { formRef: formRefType }
 
+const { jsonArr } = defineProps<Props>()
 const modelArr = ref([...jsonArr])
+const formRef: formRefType = ref(null)
+
 const createInitObj = () => {
   const obj: { [propertyNameL: string]: unknown } = {}
   jsonArr.forEach((item) => {
@@ -47,6 +51,10 @@ const createInitObj = () => {
 }
 const obj = createInitObj()
 const formModel = reactive(obj)
+
+defineExpose<ExposeType>({
+  formRef
+})
 </script>
 
 <style scoped></style>

@@ -8,6 +8,11 @@ export default [
     options: {
       'label-width': '180px',
       required: true
+    },
+    eventsCallback: {
+      change: function (e: Event) {
+        console.log('change', e)
+      }
     }
   }
 ]

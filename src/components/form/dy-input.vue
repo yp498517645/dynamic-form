@@ -6,7 +6,7 @@
     :rules="config.rules"
     v-bind="config.options"
   >
-    <el-input v-model="modelValue" :placeholder="config.placeholder" />
+    <el-input v-model="modelValue" :placeholder="config.placeholder" v-on="config.eventsCallback" />
   </el-form-item>
 </template>
 
@@ -18,6 +18,7 @@ interface typeProps {
     field: string
     customClass?: string
     options?: { [propertyName: string]: unknown }
+    eventsCallback?: { [propertyName: string]: Function }
     rules?: Array<unknown>
   }
 }
