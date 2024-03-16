@@ -6,7 +6,7 @@
     :rules="config.rules"
     v-bind="config.options"
   >
-    <el-input v-model="modelValue" :placeholder="config.placeholder" />
+    <el-input v-model="modelValue" :placeholder="config.placeholder" v-on="config.eventsCallback" />
   </el-form-item>
 </template>
 
@@ -16,13 +16,16 @@ interface typeProps {
     placeholder: string
     label: string
     field: string
+    deps: []
+    depsFunc?: (deps: []) => {}
     customClass?: string
     options?: { [propertyName: string]: unknown }
+    eventsCallback?: { [propertyName: string]: Function }
     rules?: Array<unknown>
   }
 }
 const props = withDefaults(defineProps<typeProps>(), {
-  config: () => ({ placeholder: '', label: '', field: '' })
+  config: () => ({ placeholder: '', label: '', field: '', deps: [] })
 })
 const { config } = toRefs(props)
 
