@@ -8,11 +8,16 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Components: typeof import('./src/components/index.vue')['default']
+    DyDatepicker: typeof import('./src/components/form/dy-datepicker.vue')['default']
     DyIndex: typeof import('./src/components/dy-index.vue')['default']
     DyIndexTsx: typeof import('./src/components/dy-index-tsx.vue')['default']
     DyInput: typeof import('./src/components/form/dy-input.vue')['default']
+    DySelect: typeof import('./src/components/form/dy-select.vue')['default']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
   }
 }

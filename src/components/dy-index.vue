@@ -13,6 +13,7 @@
           v-for="item in modelArr"
           :key="item.field"
           :config="item"
+          v-show="handleVisibleFunc(item?.deps, item.depsFunc)"
           v-model="formModel[item.field]"
         ></component>
       </template>
@@ -29,7 +30,8 @@ type formItem = {
   field: string
   type: string
   label?: string
-  fieldValue?: string | number
+  deps?: Array<string>
+  fieldValue?: string | number | Array<unknown> | object
   options?: { [propertyName: string]: unknown }
   [propertyName: string]: any
 }
@@ -51,6 +53,18 @@ const createInitObj = () => {
 }
 const obj = createInitObj()
 const formModel = reactive(obj)
+
+const handleVisibleFunc = (
+  deps: Array<string> = [],
+  callBack: (values: { [propertyName: string]: any }) => boolean
+) => {
+  if (deps.length === 0) return []
+  const obj: { [propertyName: string]: any } = {}
+  deps.forEach((field) => {
+    obj[field] = formModel[field]
+  })
+  return callBack(obj)
+}
 
 defineExpose<ExposeType>({
   formRef

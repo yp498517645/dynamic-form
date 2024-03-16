@@ -16,6 +16,8 @@ interface typeProps {
     placeholder: string
     label: string
     field: string
+    deps: []
+    depsFunc?: (deps: []) => {}
     customClass?: string
     options?: { [propertyName: string]: unknown }
     eventsCallback?: { [propertyName: string]: Function }
@@ -23,7 +25,7 @@ interface typeProps {
   }
 }
 const props = withDefaults(defineProps<typeProps>(), {
-  config: () => ({ placeholder: '', label: '', field: '' })
+  config: () => ({ placeholder: '', label: '', field: '', deps: [] })
 })
 const { config } = toRefs(props)
 
