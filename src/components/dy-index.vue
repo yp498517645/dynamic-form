@@ -52,6 +52,7 @@ const createInitObj = () => {
   return obj
 }
 const obj = createInitObj()
+console.log('obj', obj)
 const formModel = reactive(obj)
 
 const handleVisibleFunc = (
